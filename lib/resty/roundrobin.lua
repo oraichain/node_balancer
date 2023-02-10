@@ -40,7 +40,7 @@ local function get_gcd(nodes)
 end
 
 local function get_block_height(response)
-    -- moniker < 255
+    -- moniker = '' then latest_block_height is at 705, we start at 600 is quite safe
     local _, start_ind = string.find(response, "latest_block_height", 600)
     if start_ind == nil then
         return 0
