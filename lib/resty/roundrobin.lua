@@ -183,7 +183,7 @@ local function update(self)
     local httpc = require("resty.http").new()
     for id, _ in next, self.heights do
         -- query block height to update the heights
-        local res, err = httpc:request_uri('http://' .. id .. ':26657/status', {
+        local res, _ = httpc:request_uri('http://' .. id .. ':26657/status', {
                 method = "GET",
             })
         if res then
