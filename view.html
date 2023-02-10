@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <title>
+        Load-Balance
+    </title>    
+</head>
+
+<body>
+    <div class="container mt-2">
+        <header>
+            <h2>Welcome</h2>
+            <div class="d-flex justify-content-between">
+                <div>The last block height is: <strong>{{max_height}}</strong></div>
+                <div>Time per refine weight: <strong>{{interval}} seconds</strong></div>
+            </div>            
+        </header>
+        <section>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>IP</th>                        
+                        <th>Block Height</th>                        
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ip, height in next(heights) do %}
+                    <tr>
+                        <td>{{ip}}</td>                                                
+                        {% if height < max_height %}
+                        <td class="table-danger">{{height}}</td>
+                        {% else %}
+                        <td class="table-success">{{height}}</td>
+                        {% end %}                        
+                        <td class="table-info">{{weights[ip]}}</td>                        
+                    </tr>
+                    {% end %}
+                </tbody>
+            </table>
+        </section>
+        <footer>
+            <p><a href="{{link}}">Oraiscan</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
