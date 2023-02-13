@@ -181,6 +181,8 @@ end
 
 local function update(self)
     local httpc = require("resty.http").new()
+    -- timeout 5 seconds for reading
+    httpc:set_timeouts(2000, 2000, 5000)
     for id, _ in next, self.heights do
         -- query block height to update the heights
         local res, _ = httpc:request_uri('http://' .. id .. ':26657/status', {
