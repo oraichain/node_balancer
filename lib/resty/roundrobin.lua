@@ -185,7 +185,7 @@ local function update(self)
     httpc:set_timeouts(2000, 2000, 5000)
     for id, _ in next, self.heights do
         -- query block height to update the heights
-        local res, _ = httpc:request_uri('http://' .. id .. ':26657/status', {
+        local res, _ = httpc:request_uri('http://' .. id .. '/status', {
                 method = "GET",
             })
         if res then
