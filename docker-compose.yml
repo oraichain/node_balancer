@@ -1,7 +1,6 @@
 services:
   ingress:
-    container_name: ingress
-    build: .
+    image: devorai/owallet-node-balancer:v1.1.5
     working_dir: /workspace
     restart: on-failure
     tty: true
@@ -9,14 +8,6 @@ services:
       - 80:80    
     volumes:
       - ./conf.d:/etc/nginx/conf.d
-      - ./lib:/workspace/lib
       - ./www:/var/www
       - ./logs:/var/log/nginx
       - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
-    networks:
-      - net
-
-networks:
-  net:
-    name: net
-    external: true
